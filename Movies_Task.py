@@ -72,6 +72,8 @@ for i in range(len(titles_list[1])):
 movie_scores={}
 series_scores={}
 titles_list2=movies_list+series_list
+get_movies_list=[]
+get_series_list=[]
 
 def search():
     keyword = str(input('Proszę podać tytuł'))
@@ -91,6 +93,17 @@ def generate_views():
         series_list[i].numberOfPlays=random.randint(0,100) 
         #print(series_list[i].numberOfPlays)   
 
+def get_movies():
+    for i in range(0,len(movies_list)):
+        get_movies_list.append(getattr(movies_list[i],'title'))
+    get_movies_list.sort()
+
+
+def get_series():
+    for i in range(0,len(series_list)):
+        get_series_list.append(getattr(series_list[i],'title'))
+    get_series_list.sort()
+
 def best_score():
     for i in range(0,len(movies_list)):
         movie_scores[movies_list[i].title]=movies_list[i].numberOfPlays   
@@ -99,10 +112,12 @@ def best_score():
         series_scores[series_list[i].title]=series_list[i].numberOfPlays 
     best_series_score = max(series_scores.values())  
     print("===WYNIKI OGLĄDALNOŚCI FILMÓW===")      
-    print(movie_scores)
+    for i in range(0,len(movies_list)):
+        print(str(movies_list[i]) + ': ' + str(getattr(movies_list[i],'numberOfPlays')))
     #print(best_movie_score)
-    print("===WYNIKI OGLĄDALNOŚCI SERIALI===")   
-    print(series_scores)
+    print("===WYNIKI OGLĄDALNOŚCI SERIALI===") 
+    for i in range(0,len(series_list)):      
+        print(str(series_list[i]) + ': ' + str(getattr(series_list[i],'numberOfPlays')))
     print("=================================")
     for i in range(0,len(movies_list)):
         if best_movie_score == getattr(movies_list[i],'numberOfPlays'):
@@ -114,9 +129,10 @@ def best_score():
 
 def top3():
     print("===WYNIKI OGLĄDALNOŚCI RAZEM===")
+    for i in range(0,len(titles_list2)):
+        print(str(titles_list2[i]) + ': ' + str(getattr(titles_list2[i],'numberOfPlays')))
     scores={**movie_scores,**series_scores} 
-    sorted_scores=sorted(scores.items(), key=lambda x: x[1], reverse=True)
-    print(sorted_scores)   
+    sorted_scores=sorted(scores.items(), key=lambda x: x[1], reverse=True) 
     print("===TOP 3 OGLĄDALNOŚCI===")
     top1 = sorted_scores[0][0]
     top2 = sorted_scores[1][0]
@@ -133,9 +149,12 @@ def top3():
 
 print("==BIBLIOTEKA FILMÓW I SERIALI==")
 
+get_movies()
+get_series()
+
 while True:
     try:
-        selection=int(input('Co chcesz zrobić? 1-Wyszukiwanie Tytułów, 2-Najpopularniejsze Filmy i Seriale dzisiaj, TOP 3'))
+        selection=int(input('Co chcesz zrobić? 1-Wyszukiwanie Tytułów, 2-Alfabetyczna Lista Tytułów Filmów i Seriali, 3-Najpopularniejsze Filmy i Seriale dzisiaj, TOP 3'))
     except:
         print('Proszę podać cyfrę')
         continue
@@ -146,6 +165,13 @@ while True:
         print('================================')
         search()
     if selection==2:
+        print('===FILMY===')
+        for movie in get_movies_list:
+            print(movie)
+        print('===SERIALE===')
+        for series in get_series_list:
+            print(series)
+    if selection==3:
         generate_views()
         best_score()
         top3()
