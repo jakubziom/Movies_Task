@@ -1,0 +1,1 @@
+This is a simple program that allows you to search for movie or series title from the library, also it generates random views to movies or series and displays the most viewed film or serie and TOP3 views.
