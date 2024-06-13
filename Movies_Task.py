@@ -62,14 +62,14 @@ for i in range(len(titles_list[1])):
                             year=(titles_list[1][i][1]),
                             genre=(titles_list[1][i][2]),
                             numberOfPlays=0,
-                            numberOfEpisode=(titles_list[1][i][3]),
-                            numberOfSeason=(titles_list[1][i][4])))
+                            numberOfEpisode=(titles_list[1][i][4]),
+                            numberOfSeason=(titles_list[1][i][3])))
     
 #print(movies_list)
 #print(series_list)
 movie_scores={}
 series_scores={}
-titles_list=movies_list+series_list
+titles_list2=movies_list+series_list
 
 def search():
     keyword = str(input('Proszę podać tytuł'))
@@ -119,15 +119,17 @@ def top3():
     top1 = sorted_scores[0][0]
     top2 = sorted_scores[1][0]
     top3 = sorted_scores[2][0]
-    for i in range(0,len(titles_list)):
-        if top1 == getattr(titles_list[i],'title'):
-            print('Miejsce 1: ' + str(titles_list[i]))
-    for i in range(0,len(titles_list)):
-        if top2 == getattr(titles_list[i],'title'):
-            print('Miejsce 2: ' + str(titles_list[i]))
-    for i in range(0,len(titles_list)):
-        if top3 == getattr(titles_list[i],'title'):
-            print('Miejsce 3: ' + str(titles_list[i]))
+    for i in range(0,len(titles_list2)):
+        if top1 == getattr(titles_list2[i],'title'):
+            print('Miejsce 1: ' + str(titles_list2[i]))
+    for i in range(0,len(titles_list2)):
+        if top2 == getattr(titles_list2[i],'title'):
+            print('Miejsce 2: ' + str(titles_list2[i]))
+    for i in range(0,len(titles_list2)):
+        if top3 == getattr(titles_list2[i],'title'):
+            print('Miejsce 3: ' + str(titles_list2[i]))
+
+print("==BIBLIOTEKA FILMÓW I SERIALI==")
 
 while True:
     try:
@@ -136,6 +138,9 @@ while True:
         print('Proszę podać cyfrę')
         continue
     if selection==1:
+        print("Podpowiedź: Tytuły w bibliotece:")
+        print(titles_list)
+        print('================================')
         search()
     if selection==2:
         generate_views()
