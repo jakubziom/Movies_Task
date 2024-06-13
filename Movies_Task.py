@@ -1,8 +1,10 @@
+#Nie wiem czy do końca poprawnie to rozwiązałem, brakuje sortowania alfabetycznego i nazwy list nie są identyczne co w zadaniu
+
 import random
 from datetime import date
 today = date.today()
 
-#szablon do wyświetlania informacji o filmie
+#szablon filmu
 
 class Movie:
     def __init__(self,title,year,genre,numberOfPlays):
@@ -21,7 +23,7 @@ class Movie:
     def showNumberOfPlays(self):
         return str(self.numberOfPlays)
     
-#szablon do wyświetlania informacji o serialu
+#szablon serialu
 
 class Series(Movie):
     def __init__(self, numberOfEpisode, numberOfSeason, *args, **kwargs):
@@ -49,7 +51,7 @@ titles_list=[[['Pulp Fiction',1994,'Action'],['Lost In Translation',2003,'Romanc
 movies_list=[]
 series_list=[]
 
-#Wypełniam bibliotekę filmami:
+#Wypełniam bibliotekę filmami (tworzę instancje na listach):
 
 for i in range(len(titles_list[0])):
     movies_list.append(Movie(title=(titles_list[0][i][0]),
