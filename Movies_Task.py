@@ -134,25 +134,29 @@ def generate_views():
     print(views_movies)
     print('Seriale:')
     print(views_series)
-    print('-----------')   
+    print('-----------')
+       
+    #najpopularniejszy film i serial (instancja):
+    BestMovie=Movie(title=(str(max(views_movies, key=views_movies.get))),
+            #wyciąga rok z bazowej listy wg tytułu ze słownika
+            year=titles_list[0][find_title_index(0,(str(max(views_movies, key=views_movies.get))))][1],
+            #wyciąga gatunek z bazowej listy wg tytułu ze słownika
+            genre=titles_list[0][find_title_index(0,(str(max(views_movies, key=views_movies.get))))][2],
+            numberOfPlays=str(max(views_movies.values())))
+    BestSeries=Series(title=(str(max(views_series, key=views_series.get))),
+            #wyciąga rok z bazowej listy wg tytułu ze słownika
+            year=titles_list[1][find_title_index(1,(str(max(views_series, key=views_series.get))))][1],
+            #wyciąga gatunek z bazowej listy wg tytułu ze słownika
+            genre=titles_list[1][find_title_index(1,(str(max(views_series, key=views_series.get))))][2],
+            numberOfPlays=str(max(views_series.values())),
+            #wyciąga number epizodu i sezonu z bazowej listy wg tytułu ze słownika
+            numberOfEpisode=titles_list[1][find_title_index(1,(str(max(views_series, key=views_series.get))))][3],
+            numberOfSeason=titles_list[1][find_title_index(1,(str(max(views_series, key=views_series.get))))][4])
+
     #wyświetla najpopularniejszy film i serial wg dzisiejszej daty:  
-    print("Najpopularniejszym filmem dnia " + str(today) + " był: " + str(Movie(title=(str(max(views_movies, key=views_movies.get))),
-                                                                                #wyciąga rok z bazowej listy wg tytułu ze słownika
-                                                                                year=titles_list[0][find_title_index(0,(str(max(views_movies, key=views_movies.get))))][1],
-                                                                                #wyciąga gatunek z bazowej listy wg tytułu ze słownika
-                                                                                genre=titles_list[0][find_title_index(0,(str(max(views_movies, key=views_movies.get))))][2],
-                                                                                numberOfPlays=str(max(views_movies.values()))))
-                                                                                 + " z ilością wyświetleń: " + str(max(views_movies.values())))
-    print("Najpopularniejszym serialem dnia " + str(today) + " był: " + str(Series(title=(str(max(views_series, key=views_series.get))),
-                                                                                #wyciąga rok z bazowej listy wg tytułu ze słownika
-                                                                                year=titles_list[1][find_title_index(1,(str(max(views_series, key=views_series.get))))][1],
-                                                                                #wyciąga gatunek z bazowej listy wg tytułu ze słownika
-                                                                                genre=titles_list[1][find_title_index(1,(str(max(views_series, key=views_series.get))))][2],
-                                                                                numberOfPlays=str(max(views_series.values())),
-                                                                                #wyciąga number epizodu i sezonu z bazowej listy wg tytułu ze słownika
-                                                                                numberOfEpisode=titles_list[1][find_title_index(1,(str(max(views_series, key=views_series.get))))][3],
-                                                                                numberOfSeason=titles_list[1][find_title_index(1,(str(max(views_series, key=views_series.get))))][4]))
-                                                                                  + " z ilością wyświetleń: " + str(max(views_series.values())))
+    print("Najpopularniejszym filmem dnia " + str(today) + " był: " + str(BestMovie) + " z ilością wyświetleń: " + str(BestMovie.numberOfPlays))
+    print("Najpopularniejszym serialem dnia " + str(today) + " był: " + str(BestSeries) + " z ilością wyświetleń: " + str(BestSeries.numberOfPlays))
+
     print('-----------')
     #łączy 2 słowniki w jeden zawierający wszystkie tytuły i wyświetlenia
     views={**views_movies,**views_series}
