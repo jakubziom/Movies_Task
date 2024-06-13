@@ -78,7 +78,7 @@ def search():
             print('znalazłem film ' + str(movies_list[i]))
     for i in range(0,len(series_list)):
         if keyword == getattr(series_list[i],'title'):
-            print('znalazłem film ' + str(series_list[i]))             
+            print('znalazłem serial ' + str(series_list[i]))             
     return
 
 def generate_views():
