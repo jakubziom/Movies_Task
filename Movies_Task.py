@@ -141,7 +141,8 @@ while True:
         continue
     if selection==1:
         print("Podpowiedź: Tytuły w bibliotece:")
-        print(titles_list)
+        for i in range(0,len(titles_list2)):
+            print(titles_list2[i])
         print('================================')
         search()
     if selection==2:
