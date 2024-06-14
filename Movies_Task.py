@@ -31,7 +31,7 @@ class Series(Movie):
         self.numberOfPlays + 1
         return
     
-#lista filmów i seriali | lp. 1 |[0]-filmy [1]-seriale | lp.2 |[n] = numer tytułu z danymi | lp.3 | [0] - Tytuł [1] - Rok [2] - Gatunek, (dla seriali: [3] - Nr epizodu [4] - Nr odcinka)
+#'surowa' lista filmów i seriali | lp. 1 |[0]-filmy [1]-seriale | lp.2 |[n] = numer tytułu z danymi | lp.3 | [0] - Tytuł [1] - Rok [2] - Gatunek, (dla seriali: [3] - Nr epizodu [4] - Nr odcinka)
 #np. wyciąganie tytułu filmu titles_list[0][2][0]
 #np. wyciąganie tytułu serialu tiles_list[1][2][0]
     
@@ -59,9 +59,13 @@ for i in range(len(titles_list[1])):
     
 #print(movies_list)
 #print(series_list)
-titles_list2=movies_list+series_list
+
+#titles_list2 - lista ze wszystkimi instancjami filmów i seriali
+titles_list2=movies_list+series_list 
+
 get_movies_list=[]
 get_series_list=[]
+
 search_list=movies_list+series_list
 
     #wyszukiwanie filmów/seriali
