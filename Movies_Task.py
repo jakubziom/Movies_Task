@@ -66,7 +66,7 @@ titles_list2=movies_list+series_list
 get_movies_list=[]
 get_series_list=[]
 
-#search_list - lista tylko do podpowiedzi wyszukiwania (inna niż sortowana alfabetycznie)
+#search_list - lista tylko do podpowiedzi wyszukiwania (inna niż sortowana)
 search_list=movies_list+series_list
 
     #wyszukiwanie filmów/seriali
