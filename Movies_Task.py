@@ -3,7 +3,6 @@ from datetime import date
 today = date.today()
 
 #szablon filmu
-
 class Movie:
     def __init__(self,title,year,genre,numberOfPlays):
         self.title = title
@@ -22,7 +21,6 @@ class Movie:
         return str(self.numberOfPlays)
     
 #szablon serialu
-
 class Series(Movie):
     def __init__(self, numberOfEpisode, numberOfSeason, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -70,9 +68,9 @@ for i in range(len(titles_list[1])):
 titles_list2=movies_list+series_list
 get_movies_list=[]
 get_series_list=[]
+search_list=movies_list+series_list
 
-#wyszukiwanie filmów/seriali
-
+    #wyszukiwanie filmów/seriali
 def search():
     #słowo do wyszukiwania
     keyword = str(input('Proszę podać tytuł'))
@@ -86,16 +84,20 @@ def search():
             print('znalazłem serial ' + str(series_list[i]))             
     return
 
-    #sortuje listę filmów po tytule
+    #sortuje listę filmów po tytule 
 def get_movies():
     sorted_movies_list = sorted(movies_list, key=lambda x: x.title)
+    print('===FILMY===')
     for movie in sorted_movies_list:
+        #wyświetla filmy alfabetycznie
         print(movie)
     
     #sortuje listę seriali po tytule
 def get_series():
     sorted_series_list = sorted(series_list, key=lambda x: x.title)
+    print('===SERIALE===')
     for series in sorted_series_list:
+        #wyświetla seriale alfabetycznie
         print(series)   
 
     #przypisuje losową liczbę wyświetleń do instancji filmu i serialu
@@ -121,6 +123,7 @@ def best_score():
     for i in range(0,len(series_list)):      
         #wyświetla seriale i liczbę wyświetleń
         print(str(series_list[i]) + ': ' + str(getattr(series_list[i],'numberOfPlays')))
+    #wyświetla najczęściej oglądany film i serial
     print("=================================")
     print('Najczęściej oglądany film dnia ' + str(today) + ' to: ' + str(movies_list[0]) + ' | ilość wyświetleń: ' + str(getattr(movies_list[0],'numberOfPlays')))
     print('Najczęściej oglądany serial dnia ' + str(today) + ' to: ' + str(series_list[0]) + ' | ilość wyświetleń: ' + str(getattr(series_list[0],'numberOfPlays')))
@@ -133,18 +136,15 @@ def top3():
     for i in range(0,len(titles_list2)):
         #wyświetla filmy i seriale razem wg liczby wyświetleń
         print(str(titles_list2[i]) + ': ' + str(getattr(titles_list2[i],'numberOfPlays')))
- 
     print("===TOP 3 OGLĄDALNOŚCI===")
     #wartości 3 tytułów z największą liczbą wyświetleń 
     print('Miejsce 1: ' + str(titles_list2[0]) + ' | ilość wyświetleń: ' + str(getattr(titles_list2[0],'numberOfPlays')))
     print('Miejsce 2: ' + str(titles_list2[1]) + ' | ilość wyświetleń: ' + str(getattr(titles_list2[1],'numberOfPlays')))
     print('Miejsce 3: ' + str(titles_list2[2]) + ' | ilość wyświetleń: ' + str(getattr(titles_list2[2],'numberOfPlays')))
 
-
 print("==BIBLIOTEKA FILMÓW I SERIALI==")
 
 #wprowadzanie informacji przez użytkownika
-
 while True:
     try:
         selection=int(input('Co chcesz zrobić? 1-Wyszukiwanie Tytułów, 2-Alfabetyczna Lista Tytułów Filmów i Seriali, 3-Najpopularniejsze Filmy i Seriale dzisiaj, TOP 3'))
@@ -152,15 +152,13 @@ while True:
         print('Proszę podać cyfrę')
         continue
     if selection==1:
-        print("Podpowiedź: Tytuły w bibliotece:")
-        for i in range(0,len(titles_list2)):
-            print(titles_list2[i])
+        print("==Podpowiedź: Tytuły w bibliotece:==")
+        for i in range(0,len(search_list)):
+            print(search_list[i])
         print('================================')
         search()
     if selection==2:
-        print('===FILMY===')
         get_movies()
-        print('===SERIALE===')
         get_series()
     if selection==3:
         generate_views()
