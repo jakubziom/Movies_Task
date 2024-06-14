@@ -67,8 +67,6 @@ for i in range(len(titles_list[1])):
     
 #print(movies_list)
 #print(series_list)
-movie_scores={}
-series_scores={}
 titles_list2=movies_list+series_list
 get_movies_list=[]
 get_series_list=[]
@@ -109,15 +107,7 @@ def generate_views():
         series_list[i].numberOfPlays=random.randint(0,100) 
         #print(series_list[i].numberOfPlays)   
 
-def best_score():
-    for i in range(0,len(movies_list)):
-        #tworzy słownik z liczbą wyświetleń filmu {tytuł=liczba wyświetleń} 
-        movie_scores[movies_list[i].title]=movies_list[i].numberOfPlays  
-    best_movie_score = max(movie_scores.values())
-    for i in range(0,len(series_list)):
-        #tworzy słownik z liczbą wyświetleń serialu {tytuł=liczba wyświetleń} 
-        series_scores[series_list[i].title]=series_list[i].numberOfPlays  
-    best_series_score = max(series_scores.values())  
+def best_score():  
     print("===WYNIKI OGLĄDALNOŚCI FILMÓW===")
     #sortuje listę z instancjami filmów wg. liczby wyświetleń (malejąco) 
     movies_list.sort(key=lambda x: x.numberOfPlays, reverse=True)     
@@ -127,19 +117,13 @@ def best_score():
     #print(best_movie_score)
     print("===WYNIKI OGLĄDALNOŚCI SERIALI===") 
     #sortuje listę z instancjami serialów wg. liczby wyświetleń (malejąco) 
-    series_list.sort(key=lambda x: x.numberOfPlays, reverse=True) 
+    series_list.sort(key=lambda x: x.numberOfPlays, reverse=True)
     for i in range(0,len(series_list)):      
         #wyświetla seriale i liczbę wyświetleń
         print(str(series_list[i]) + ': ' + str(getattr(series_list[i],'numberOfPlays')))
     print("=================================")
-    for i in range(0,len(movies_list)):
-        #szuka filmu z największą liczbą wyświetleń w liście z instancjami wg best_movie_score (najw. wartość wyświetleń ze słownika)
-        if best_movie_score == getattr(movies_list[i],'numberOfPlays'):
-            print('Najczęściej oglądany film dnia ' + str(today) + ' to: ' + str(movies_list[i]) + ' | ilość wyświetleń: ' + str(getattr(movies_list[i],'numberOfPlays')))
-    for i in range(0,len(series_list)):
-        #szuka serialu z największą liczbą wyświetleń w liście z instancjami wg best_series_score (najw. wartość wyświetleń ze słownika)
-        if best_series_score == getattr(series_list[i],'numberOfPlays'):
-            print('Najczęściej oglądany serial dnia ' + str(today) + ' to: ' + str(series_list[i]) + ' | ilość wyświetleń: ' + str(getattr(series_list[i],'numberOfPlays')))
+    print('Najczęściej oglądany film dnia ' + str(today) + ' to: ' + str(movies_list[0]) + ' | ilość wyświetleń: ' + str(getattr(movies_list[0],'numberOfPlays')))
+    print('Najczęściej oglądany serial dnia ' + str(today) + ' to: ' + str(series_list[0]) + ' | ilość wyświetleń: ' + str(getattr(series_list[0],'numberOfPlays')))
     print("=================================")
 
 def top3():
@@ -149,26 +133,13 @@ def top3():
     for i in range(0,len(titles_list2)):
         #wyświetla filmy i seriale razem wg liczby wyświetleń
         print(str(titles_list2[i]) + ': ' + str(getattr(titles_list2[i],'numberOfPlays')))
-    #tworzy słownik ze wszystkimi filmami i serialami i przypisanymi im ilościami wyświetleń
-    scores={**movie_scores,**series_scores} 
-    #sortuje słownik wg liczby wyświetleń (malejąco)
-    sorted_scores=sorted(scores.items(), key=lambda x: x[1], reverse=True) 
+ 
     print("===TOP 3 OGLĄDALNOŚCI===")
-    #wartości 3 tytułów z największą liczbą wyświetleń (wyciągnięte ze słownika)
-    top1 = sorted_scores[0][0]
-    top2 = sorted_scores[1][0]
-    top3 = sorted_scores[2][0]
-    for i in range(0,len(titles_list2)):
-        #szuka w liście z instancjami tytułu filmu lub serialu
-        if top1 == getattr(titles_list2[i],'title'):
-            #wyświetla tytuł
-            print('Miejsce 1: ' + str(titles_list2[i]) + ' | ilość wyświetleń: ' + str(getattr(titles_list2[i],'numberOfPlays')))
-    for i in range(0,len(titles_list2)):
-        if top2 == getattr(titles_list2[i],'title'):
-            print('Miejsce 2: ' + str(titles_list2[i]) + ' | ilość wyświetleń: ' + str(getattr(titles_list2[i],'numberOfPlays')))
-    for i in range(0,len(titles_list2)):
-        if top3 == getattr(titles_list2[i],'title'):
-            print('Miejsce 3: ' + str(titles_list2[i]) + ' | ilość wyświetleń: ' + str(getattr(titles_list2[i],'numberOfPlays')))
+    #wartości 3 tytułów z największą liczbą wyświetleń 
+    print('Miejsce 1: ' + str(titles_list2[0]) + ' | ilość wyświetleń: ' + str(getattr(titles_list2[0],'numberOfPlays')))
+    print('Miejsce 2: ' + str(titles_list2[1]) + ' | ilość wyświetleń: ' + str(getattr(titles_list2[1],'numberOfPlays')))
+    print('Miejsce 3: ' + str(titles_list2[2]) + ' | ilość wyświetleń: ' + str(getattr(titles_list2[2],'numberOfPlays')))
+
 
 print("==BIBLIOTEKA FILMÓW I SERIALI==")
 
