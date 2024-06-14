@@ -66,6 +66,10 @@ search_list=movies_list+series_list
 
     #wyszukiwanie filmów/seriali
 def search():
+    print("==Podpowiedź: Tytuły w bibliotece:==")
+    for i in range(0,len(search_list)):
+        print(search_list[i])
+    print('================================')
     #słowo do wyszukiwania
     keyword = str(input('Proszę podać tytuł'))
     for i in range(0,len(movies_list)):
@@ -146,10 +150,6 @@ while True:
         print('Proszę podać cyfrę')
         continue
     if selection==1:
-        print("==Podpowiedź: Tytuły w bibliotece:==")
-        for i in range(0,len(search_list)):
-            print(search_list[i])
-        print('================================')
         search()
     if selection==2:
         get_movies()
