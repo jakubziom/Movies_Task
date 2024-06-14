@@ -17,9 +17,6 @@ class Movie:
         self.numberOfPlays + 1
         return
     
-    def showNumberOfPlays(self):
-        return str(self.numberOfPlays)
-    
 #szablon serialu
 class Series(Movie):
     def __init__(self, numberOfEpisode, numberOfSeason, *args, **kwargs):
@@ -33,9 +30,6 @@ class Series(Movie):
     def play(self):
         self.numberOfPlays + 1
         return
-    
-    def showNumberOfPlays(self):
-        return str(self.numberOfPlays)
     
 #lista filmów i seriali | lp. 1 |[0]-filmy [1]-seriale | lp.2 |[n] = numer tytułu z danymi | lp.3 | [0] - Tytuł [1] - Rok [2] - Gatunek, (dla seriali: [3] - Nr epizodu [4] - Nr odcinka)
 #np. wyciąganie tytułu filmu titles_list[0][2][0]
