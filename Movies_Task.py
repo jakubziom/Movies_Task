@@ -137,7 +137,7 @@ def best_score():
         if best_movie_score == getattr(movies_list[i],'numberOfPlays'):
             print('Najczęściej oglądany film dnia ' + str(today) + ' to: ' + str(movies_list[i]) + ' | ilość wyświetleń: ' + str(getattr(movies_list[i],'numberOfPlays')))
     for i in range(0,len(series_list)):
-        #szuka filmu z największą liczbą wyświetleń w liście z instancjami wg best_movie_score (najw. wartość wyświetleń ze słownika)
+        #szuka serialu z największą liczbą wyświetleń w liście z instancjami wg best_series_score (najw. wartość wyświetleń ze słownika)
         if best_series_score == getattr(series_list[i],'numberOfPlays'):
             print('Najczęściej oglądany serial dnia ' + str(today) + ' to: ' + str(series_list[i]) + ' | ilość wyświetleń: ' + str(getattr(series_list[i],'numberOfPlays')))
     print("=================================")
